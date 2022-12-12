@@ -1,18 +1,35 @@
 package com.codestates.ToDoApp.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity
 public class Todo {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long todoId;
 
+    @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false)
     private int todo_order;
 
+    @Column(nullable = false)
     private boolean completed;
+
+    public Todo(String title, int todo_order, boolean completed){
+        this.title = title;
+        this.todo_order = todo_order;
+        this.completed = completed;
+    }
 
     public Long getTodoId() {
         return todoId;
